@@ -35,6 +35,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { HistoriaEliminarDialogoComponent } from './historia-eliminar-dialogo/historia-eliminar-dialogo.component';
+import { EquipoComponent } from './equipo/equipo.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,7 @@ import { HistoriaEliminarDialogoComponent } from './historia-eliminar-dialogo/hi
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  declarations: [DashboardComponent, HistoriasListadoComponent, HistoriaCrearDialogoComponent, HistoriaEditarDialogComponent, HistoriaEliminarDialogoComponent],
+  declarations: [DashboardComponent, HistoriasListadoComponent, HistoriaCrearDialogoComponent, HistoriaEditarDialogComponent, HistoriaEliminarDialogoComponent, EquipoComponent],
   providers: [
     HistoriasService,
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
