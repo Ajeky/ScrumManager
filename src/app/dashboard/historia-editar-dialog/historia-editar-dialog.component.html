@@ -1,0 +1,22 @@
+<div fxFlexLayout="column">
+    <h1 mat-dialog-title>Editar Historia</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [(ngModel)]="historia.titulo">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="historia.descripcion">
+        </mat-form-field>
+        <mat-select matNativeControl [(ngModel)]="historia.estado">
+            <mat-option *ngFor="let estado of estados" [value]="estado">
+                {{estado}}
+            </mat-option>
+        </mat-select>
+
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cerrar()">Cancelar</button>
+        <button mat-button (click)="editarHistoria()" cdkFocusInitial>Guardar</button>
+    </div>
+</div>
