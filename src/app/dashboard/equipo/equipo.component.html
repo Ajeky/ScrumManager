@@ -1,1 +1,49 @@
-<p>equipo works!</p>
+<div fxLayout="column" *ngIf="idEquipo != ''">
+    <div>
+        <h2>{{ equipo?.nombre }}</h2>
+        <h4>Código acceso: {{ equipo?.codigo_acceso }}</h4>
+    </div>
+    <table mat-table [dataSource]="listaMiembros" class="mat-elevation-z8" fxFlex="100%">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- nombre usuario Column -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre miembro </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.data.nombre}}
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip color="primary" *ngIf="element.id == equipo.creado_por">propietario</mat-chip>
+                </mat-chip-list>
+            </td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>
+
+<div *ngIf="idEquipo == ''">
+    <div class="session">
+        <div class="session-content text-xs-center">
+            <div>
+                <div class="error-title">¡Vaya!</div>
+                <div class="error-subtitle mb-2">Aún no perteneces a ningún equipo</div>
+                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+                    <a mat-raised-button color="primary" (click)="dialogoCrearEquipo()">Crear equipo</a>
+                    <a mat-raised-button color="accent" (click)="dialogoUnirseAEquipo()">Unirme a equipo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

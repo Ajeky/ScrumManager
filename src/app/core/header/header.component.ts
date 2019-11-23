@@ -19,4 +19,8 @@ export class HeaderComponent {
       Screenfull.toggle();
     }
   }
+
+  getPhotoUrl() {
+    return localStorage.getItem('photo');
+  }
 }

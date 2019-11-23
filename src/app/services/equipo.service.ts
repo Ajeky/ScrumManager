@@ -23,14 +23,14 @@ export class EquipoService {
 
     let nuevoEquipo = await this.db.collection(collectionName).add(equipoDto.transformarDto()).then(resp => {return resp; });
 
-    localStorage.setItem('equipoId', nuevoEquipo.id);
+    localStorage.setItem('idEquipo', nuevoEquipo.id);
 
     this.db.collection(collectionName).doc(nuevoEquipo.id).collection('miembros').doc(uid).set({
       nombre: localStorage.getItem('nombre')
     });
 
     return this.db.collection('usuarios').doc(uid).update({
-      equipoId: localStorage.getItem('equipoId')
+      equipoId: localStorage.getItem('idEquipo')
     });
   }
 
@@ -54,7 +54,7 @@ export class EquipoService {
   }
 
   public getEquipo(idEquipo: string) {
-    return this.db.collection<Equipo>(collectionName).doc<Equipo>(idEquipo).snapshotChanges();
+    return this.db.collection<Equipo>(collectionName).doc<Equipo>(idEquipo).valueChanges();
   }
 
   public getMiembros(idEquipo: string) {
